@@ -33,9 +33,9 @@
 
 
 
-							<div th:fragment="mensagemGeral" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-								<span th:text="${mensagem}"></span>
-							</div>
+							<div th:fragment="mensagemGeral" class="alert alert-success" th:if="${!#strings.isEmpty(message)}">
+					           <span th:text="${message}"></span>
+				            </div>
 
 
 
