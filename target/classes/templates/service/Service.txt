@@ -1,0 +1,47 @@
+package ${packageService};
+
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import ${packageEntity};
+import ${packageRepository};
+import ${packageFilter};
+
+@Service
+public class ${service} {
+
+	private String errorDelete = "${errorDeleteMessage}";
+
+    @Autowired
+	private ${repository} ${repositoryField};
+
+	@Transactional
+	public void save(${entity} ${entityField}) {
+		${repositoryField}.save(${entityField});
+	}
+	
+	public Page<${entity}> filter(${filter} ${filterField}, Pageable pageable) {
+		return ${repositoryField}.filtrar(${filterField}, pageable);
+	}
+
+	@Transactional
+	public void delete(${entity} ${entityField}) {
+		try {
+			${repositoryField}.delete(${entityField});
+		} catch (Exception e) {
+			if (e instanceof org.hibernate.exception.ConstraintViolationException
+					|| e instanceof DataIntegrityViolationException) {
+				throw new IllegalArgumentException(errorDelete);
+			}
+			throw e;
+		}
+
+	}
+
+}

@@ -1,0 +1,3 @@
+            if (filtro.get#UPPERATRIBUTE() != null) {
+				criteria.add(Restrictions.eq("#ATRIBUTE", filtro.get#UPPERATRIBUTE()));
+			}

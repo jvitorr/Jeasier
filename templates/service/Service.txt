@@ -1,0 +1,37 @@
+package #PACKAGE;
+
+import javax.transaction.Transactional;
+
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
+
+import #IMPORTCLASS;
+import #IMPORTREPOSITORY;
+
+@Service
+public class #CLASSNAMESERVICE {
+
+	private String errorDelete = "#ERRORDELETEMESSAGE";
+
+	private #CLASSNAMEREPOSITORY #CLASSNAMEREPOSITORYFIELD;
+
+	@Transactional
+	public void salvar(#CLASSNAME #CLASSNAMEFIELD) {
+		#CLASSNAMEREPOSITORYFIELD.save(#CLASSNAMEFIELD);
+	}
+
+	@Transactional
+	public void delete(#CLASSNAME #CLASSNAMEFIELD) {
+		try {
+			#CLASSNAMEREPOSITORYFIELD.delete(#CLASSNAMEFIELD);
+		} catch (Exception e) {
+			if (e instanceof org.hibernate.exception.ConstraintViolationException
+					|| e instanceof DataIntegrityViolationException) {
+				throw new IllegalArgumentException(errorDelete);
+			}
+			throw e;
+		}
+
+	}
+
+}

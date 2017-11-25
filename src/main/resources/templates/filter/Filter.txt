@@ -1,0 +1,10 @@
+package ${packageFilter};
+
+${imports}
+
+public class ${filter} {
+
+${fields}
+
+
+}

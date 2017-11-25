@@ -1,0 +1,3 @@
+            
+				criteria.add(Restrictions.eq("#ATRIBUTE", filtro.is#UPPERATRIBUTE()));
+			

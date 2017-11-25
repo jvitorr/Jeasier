@@ -1,0 +1,4 @@
+           if (!StringUtils.isEmpty(filtro.get#UPPERATRIBUTE())) {
+				criteria.add(Restrictions.ilike("#ATRIBUTE", filtro.get#UPPERATRIBUTE(), MatchMode.ANYWHERE));
+			}
+			

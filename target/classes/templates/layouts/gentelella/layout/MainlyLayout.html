@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<title>EasyJavaProject</title>
+
+
+
+<!-- Bootstrap -->
+<link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<!-- Font Awesome -->
+<link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}"
+	rel="stylesheet" />
+<!-- Custom Theme Style -->
+<link th:href="@{/layout/css/custom.css}" rel="stylesheet" />
+
+
+
+<style type="text/css">
+th {
+	text-align: center;
+}
+
+tr {
+	text-align: center;
+	color: black;
+}
+
+td {
+	margin-left: auto;
+	margin-right: auto
+}
+
+.tabela>td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+tr:hover td {
+	background-color: #87CEEB
+}
+
+.table-striped>thead {
+	background-color: #1E90FF;
+	color: white;
+}
+
+h1, h2, h3, h4, h5 {
+	color: black;
+}
+</style>
+
+<style>
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+</style>
+
+</head>
+
+
+
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+
+			<div th:replace="layout/fragments/SideMenu :: SideMenu "></div>
+			<div th:replace="layout/fragments/TopBar :: TopBar"></div>
+			<div class="right_col" layout:fragment="content" role="main"
+				style="min-height: 1017px; background-color: #DCDCDC;"></div>
+			<div th:replace="layout/fragments/Footer :: Footer"></div>
+		</div>
+
+
+	</div>
+
+
+	<!-- jQuery -->
+	<script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+	<!-- Bootstrap -->
+	<script th:src="@{/vendors/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<!-- FastClick -->
+	<script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
+	<!-- NProgress -->
+	<script th:src="@{/vendors/nprogress/nprogress.js}"></script>
+	<!-- modal framework -->
+	<script th:src="@{/vendors/modalFramework/bootbox.min.js}"></script>
+	<!-- Custom Theme Scripts -->
+	<script th:src="@{/layout/js/custom.js}"></script>
+
+	<th:block layout:fragment="javascript-extra"></th:block>
+
+
+
+</body>
+
+</html>

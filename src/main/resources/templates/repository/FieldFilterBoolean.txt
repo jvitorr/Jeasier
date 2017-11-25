@@ -1,0 +1,2 @@
+criteria.add(Restrictions.eq("${atribute}", ${filterField}.is${upperAtribute}()));
+			

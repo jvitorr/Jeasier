@@ -1,0 +1,3 @@
+            if (${filterField}.get${upperAtribute}() != null) {
+				criteria.add(Restrictions.eq("${atribute}", ${filterField}.get${upperAtribute}()));
+			}

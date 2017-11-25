@@ -1,0 +1,4 @@
+           if (!StringUtils.isEmpty(${filterField}.get${upperAtribute}())) {
+				criteria.add(Restrictions.ilike("${atribute}", ${filterField}.get${upperAtribute}(), MatchMode.ANYWHERE));
+			}
+			

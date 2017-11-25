@@ -1,0 +1,102 @@
+package com.easyteste.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import #IMPORTFILTER;
+import #IMPORTCLASS;
+import #IMPORTREPOSITORY;
+import #IMPORTSERVICE;
+
+@Controller
+@RequestMapping("/#CLASSNAMEFIELD/")
+public class #CONTROLLER {
+
+	@Autowired
+	private #SERVICE #SERVICEFIELD;
+	
+	@Autowired
+	private #REPOSITORY #REPOSITORYFIELD;
+
+	private String msgDeleteSucesso = "#SUCESSDELETE";
+
+	private String msgDeleteError = "#DELETEERROR";
+
+	private String msgSucessoCriacao = "#SUCESSCREATE";
+
+	@GetMapping("/#NEW")
+	public ModelAndView createCLASSNAME(#CLASSNAME #CLASSNAMEFIELD) {
+		ModelAndView mv = new ModelAndView("#CLASSNAMEFIELD/#NEW");
+		if (#CLASSNAMEFIELD.getId() != null) {
+			mv.addObject("titulo", "#TITLECREATE");
+			mv.addObject("btn", "#TITLECREATEBUTTON");
+		} else {
+			mv.addObject("titulo", "#TITLECREATEEDIT");
+			mv.addObject("btn", "#TITLECREATEEDITBUTTON");
+		}
+
+		return mv;
+	}
+
+	@PostMapping("/#NEW")
+	public ModelAndView save(@Validated #CLASSNAME #CLASSNAMEFIELD, Errors errors, RedirectAttributes attributes) {
+
+		if (errors.hasErrors()) {
+			return create(#CLASSNAMEFIELD);
+		}
+
+		SERVICEFIELD.save(#CLASSNAMEFIELD);
+		attributes.addFlashAttribute("message", msgSucessoCriacao);
+		return new ModelAndView("redirect:/#CLASSNAMEFIELD/#NEW");
+
+	}
+
+	@GetMapping("/{code}")
+	public ModelAndView edit(@PathVariable("code") #TYPEPRIMARYKEY code) {
+		#CLASSNAME #CLASSNAMEFIELD = new #CLASSNAME();
+		#CLASSNAMEFIELD = REPOSITORYFIELD.findOne(code);
+
+		return new(#CLASSNAMEFIELD);
+
+	}
+
+	@GetMapping("/list")
+	public ModelAndView search(#CLASSNAMEFILTER #CLASSNAMEFILTERFIELD, BindingResult result,
+			@PageableDefault(size = 10) Pageable pageable, HttpServletRequest httpServletRequest) {
+		System.out.println(#CLASSNAMEFILTERFIELD);
+		ModelAndView mv = new ModelAndView("#CLASSNAMEFIELD/#LIST");
+		mv.addObject("pagina", SERVICEFIELD.filter(#CLASSNAMEFILTERFIELD, pageable, httpServletRequest));
+
+		return mv;
+	}
+
+	@GetMapping("/delete/{code}")
+	public ModelAndView delete(@PathVariable("code") #TYPEPRIMARYKEY code, RedirectAttributes attributes) {
+		System.out.println(code);
+		#CLASSNAME #CLASSNAMEFIELD = new #CLASSNAME();
+		CLASSNAMEFIELD.#SETPRIMARYKEY(code);
+		try {
+			#SERVICEFIELD.delete(go);
+			attributes.addFlashAttribute("message", msgDeleteSucesso);
+		} catch (Exception e) {
+			e.printStackTrace();
+			attributes.addFlashAttribute("messageErro", msgDeleteError);
+		}
+
+		return new ModelAndView("redirect:/#CLASSNAMEFIELD/list");
+	}
+
+}

@@ -1,0 +1,15 @@
+package ${packageHelper};
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import ${packageFilter};
+import ${packageEntity};
+
+
+
+public interface ${helper} {
+
+	public Page<${entity}> filtrar(${filter} ${filterField}, Pageable pageable);
+
+}

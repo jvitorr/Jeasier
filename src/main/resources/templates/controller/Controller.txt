@@ -1,0 +1,113 @@
+package ${packageController};
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import ${packageFilter};
+import ${packageEntity};
+import ${packageRepository};
+import ${packageService};
+${packageEnuns}
+${packageClasses}
+import ${packagePageWrapper};
+
+@Controller
+@RequestMapping("/${entityField}/")
+public class ${controller} {
+
+	@Autowired
+	private ${service} ${serviceField};
+	
+	@Autowired
+	private ${repository} ${repositoryField};
+
+	private String msgDeleteSucesso = "${sucessDelete}";
+
+	private String msgDeleteError = "${errorDelete}";
+
+	private String msgSucessoCriacao = "${sucessCreate}";
+	
+	${instancesFieldsRepository}
+
+	@GetMapping("/${new}")
+	public ModelAndView create(${entity} ${entityField}) {
+		ModelAndView mv = new ModelAndView("${entityField}/${new}");
+		if (${entityField}.get${atributePrimaryKey}() == null) {
+			mv.addObject("title", "${titleCreate}");
+			mv.addObject("btn", "${titleCreateButton}");
+		} else {
+			mv.addObject("title", "${titleCreateEdit}");
+			mv.addObject("btn", "${titleCreateEditButton}");
+		}
+		mv.addObject(${entityField});
+	
+		${imprementationEnumerations}
+		${implementationModelClasses}
+
+		return mv;
+	}
+
+	@PostMapping("/${new}")
+	public ModelAndView save(@Validated ${entity} ${entityField}, Errors errors, RedirectAttributes attributes) {
+
+		if (errors.hasErrors()) {
+			return create(${entityField});
+		}
+
+		${serviceField}.save(${entityField});
+		attributes.addFlashAttribute("message", msgSucessoCriacao);
+		return new ModelAndView("redirect:/${entityField}/${new}");
+
+	}
+
+	@GetMapping("/{code}")
+	public ModelAndView edit(@PathVariable("code") ${typePrimaryKey} code) {
+		${entity} ${entityField} = new ${entity}();
+		${entityField} = ${repositoryField}.findOne(code);
+
+		return create(${entityField});
+
+	}
+
+	@GetMapping("/list")
+	public ModelAndView search(${filter} ${filterField}, BindingResult result,
+			@PageableDefault(size = 10) Pageable pageable, HttpServletRequest httpServletRequest) {
+		System.out.println(${serviceField});
+		ModelAndView mv = new ModelAndView("${entityField}/${list}");
+		mv.addObject("pagina", new ${pageWrapper}<>(${serviceField}.filter(${filterField}, pageable),httpServletRequest));
+        ${imprementationEnumerations}
+		${implementationModelClasses}
+		return mv;
+	}
+
+	@DeleteMapping("/delete/{code}")
+	public ModelAndView delete(@PathVariable("code") ${typePrimaryKey} code, RedirectAttributes attributes) {
+		System.out.println(code);
+		${entity} ${entityField} = new ${entity}();
+		${entityField}.set${atributePrimaryKey}(code);
+		try {
+			${serviceField}.delete(${entityField});
+			attributes.addFlashAttribute("message", msgDeleteSucesso);
+		} catch (Exception e) {
+			e.printStackTrace();
+			attributes.addFlashAttribute("messageErro", msgDeleteError);
+		}
+
+		return new ModelAndView("redirect:/${entityField}/list");
+	}
+
+}

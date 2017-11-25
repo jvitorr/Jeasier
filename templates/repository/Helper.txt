@@ -1,0 +1,15 @@
+package #PACKAGE;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import #IMPORTFILTER;
+import #IMPORTCLASS;
+
+
+
+public interface #NAMEHELPER {
+
+	public Page<#NAMECLASS> filtrar(#NAMEFILTER filter, Pageable pageable);
+
+}

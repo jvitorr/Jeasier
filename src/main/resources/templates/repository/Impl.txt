@@ -1,0 +1,59 @@
+package ${packageImpl};
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.util.StringUtils;
+
+import ${packageHelper};
+import ${packageFilter};
+import ${packageEntity};
+
+
+
+public class ${impl} implements ${helper} {
+
+	@PersistenceContext
+	private EntityManager manager;
+
+	@SuppressWarnings("unchecked")
+	public Page<${entity}> filtrar(${filter}  ${filterField}, Pageable pageable) {
+		Criteria criteria = manager.unwrap(Session.class).createCriteria(${entity}.class);
+
+		int paginaAtual = pageable.getPageNumber();
+		int totalRegistrosPorPagina = pageable.getPageSize();
+		int primeiroRegistro = paginaAtual * totalRegistrosPorPagina;
+
+		criteria.setFirstResult(primeiroRegistro);
+		criteria.setMaxResults(totalRegistrosPorPagina);
+
+		addFilter(${filterField}, criteria);
+
+		return new PageImpl<>(criteria.list(), pageable, total(${filterField}));
+	}
+
+	private Long total(${filter} ${filterField}) {
+
+		Criteria criteria = manager.unwrap(Session.class).createCriteria(${entity}.class);
+		addFilter(${filterField}, criteria);
+		criteria.setProjection(Projections.rowCount());
+		return (Long) criteria.uniqueResult();
+	}
+
+	private void addFilter(${filter} ${filterField}, Criteria criteria) {
+		if (${filterField} != null) {
+			
+          ${filters}
+
+		}
+	}
+
+}

@@ -1,0 +1,9 @@
+package #PACKAGE;
+
+#IMPORTS
+
+public class #NAMEFILTER {
+
+#FIELDS	
+
+}

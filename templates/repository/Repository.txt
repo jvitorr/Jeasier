@@ -1,0 +1,19 @@
+package #PACKAGE;
+
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import #IMPORTCLASS;
+import #IMPORTHELPER;
+
+
+
+@Repository
+public interface #NAMECLASSREPOSITORY extends JpaRepository<#NAMECLASS, #TYPEPRIMARYKEY>,#NAMECLASSHELPER {
+
+	
+
+}
+
