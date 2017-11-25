@@ -12,6 +12,12 @@ import com.jeasier.util.FieldUtil;
 import com.jeasier.util.IOUtil;
 import com.jeasier.util.OSValidator;
 
+/**
+ * 
+ * @author João Vitor Feitosa
+ * @since 0.0.1
+ */
+
 public class ThymeleafListGenerator {
 
 	private EasyJavaProperties prop;

@@ -1,5 +1,10 @@
 package com.jeasier.model;
 
+/**
+ * 
+ * @author João Vitor Feitosa
+ * @since 0.0.1
+ */
 public interface TemplateFormat {
 
 	public String getPathVendors();
@@ -23,7 +28,5 @@ public interface TemplateFormat {
 	public String getListPage();
 
 	public String getCreateFilterField();
-	
-	
 
 }

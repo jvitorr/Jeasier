@@ -9,6 +9,13 @@ import com.jeasier.util.EasyJavaUtil;
 import com.jeasier.util.FieldUtil;
 import com.jeasier.util.IOUtil;
 
+
+/**
+ * 
+ * @author João Vitor Feitosa
+ * @since 0.0.1
+ */
+
 public class EntityPageWrapperGenerator {
 
 	private EasyJavaProperties prop;

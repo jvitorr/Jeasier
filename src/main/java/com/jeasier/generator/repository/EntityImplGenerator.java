@@ -8,8 +8,14 @@ import com.jeasier.app.EasyJavaAplication;
 import com.jeasier.util.EasyJavaProperties;
 import com.jeasier.util.EasyJavaUtil;
 import com.jeasier.util.FieldUtil;
-import com.jeasier.util.GeneratorUtils;
 import com.jeasier.util.IOUtil;
+
+
+/**
+ * 
+ * @author João Vitor Feitosa
+ * @since 0.0.1
+ */
 
 public class EntityImplGenerator {
 

@@ -2,6 +2,12 @@ package com.jeasier.templates;
 
 import com.jeasier.model.TemplateFormat;
 
+/**
+ * 
+ * @author João Vitor Feitosa
+ * @since 0.0.1
+ */
+
 public class Gentelella implements TemplateFormat {
 
 	public String getPathVendors() {

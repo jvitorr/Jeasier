@@ -1,6 +1,7 @@
 package com.jeasier.app;
 
 import java.io.IOException;
+
 import java.net.URISyntaxException;
 
 import com.google.common.reflect.ClassPath;
@@ -18,6 +19,12 @@ import com.jeasier.model.TemplateFormat;
 import com.jeasier.util.EasyJavaProperties;
 import com.jeasier.util.EasyJavaUtil;
 import com.jeasier.util.FieldUtil;
+
+/**
+ * 
+ * @author João Vitor Feitosa
+ * @since 0.0.1
+ */
 
 public class EasyJavaAplication {
 

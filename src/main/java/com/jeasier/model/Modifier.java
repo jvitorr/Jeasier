@@ -1,5 +1,10 @@
 package com.jeasier.model;
 
+/**
+ * 
+ * @author João Vitor Feitosa
+ * @since 0.0.1
+ */
 public enum Modifier {
 
 	PRIVATE("private"), PUBLIC("public");

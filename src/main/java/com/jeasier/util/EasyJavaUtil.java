@@ -2,6 +2,12 @@ package com.jeasier.util;
 
 import java.net.URISyntaxException;
 
+/**
+ * 
+ * @author João Vitor Feitosa
+ * @since 0.0.1
+ */
+
 public class EasyJavaUtil {
 
 	public static String getPackageDefault(Class<?> gClass) throws URISyntaxException {

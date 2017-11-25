@@ -4,6 +4,12 @@ import java.lang.reflect.Field;
 
 import com.jeasier.model.Modifier;
 
+/**
+ * 
+ * @author João Vitor Feitosa
+ * @since 0.0.1
+ */
+
 public class FieldUtil {
 
 	public static void main(String[] args) {

@@ -8,6 +8,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * 
+ * @author João Vitor Feitosa
+ * @since 0.0.1
+ */
+
 public class IOUtil {
 
 	public static final String CONTROLLER_TEMPLATE = "src/main/resources/templates/Controller.txt";
@@ -111,15 +117,15 @@ public class IOUtil {
 		}
 	}
 
-//	public static void criarPastasGenerator(Classe classe) {
-//		criarPastasCasoNaoExista(targetController);
-//		criarPastasCasoNaoExista(targetRepository);
-//		criarPastasCasoNaoExista(targetFilter);
-//		criarPastasCasoNaoExista(targetHelper);
-//		criarPastasCasoNaoExista(targetImpl);
-//		criarPastasCasoNaoExista(targetModel);
-//		criarPastasCasoNaoExista(targetTemple);
-//		criarPastasCasoNaoExista(targetTemple + "/" + classe.getNomeAtributo());
-//	}
+	// public static void criarPastasGenerator(Classe classe) {
+	// criarPastasCasoNaoExista(targetController);
+	// criarPastasCasoNaoExista(targetRepository);
+	// criarPastasCasoNaoExista(targetFilter);
+	// criarPastasCasoNaoExista(targetHelper);
+	// criarPastasCasoNaoExista(targetImpl);
+	// criarPastasCasoNaoExista(targetModel);
+	// criarPastasCasoNaoExista(targetTemple);
+	// criarPastasCasoNaoExista(targetTemple + "/" + classe.getNomeAtributo());
+	// }
 
 }

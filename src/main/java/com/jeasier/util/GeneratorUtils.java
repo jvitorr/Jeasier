@@ -1,5 +1,10 @@
 package com.jeasier.util;
 
+/**
+ * 
+ * @author João Vitor Feitosa
+ * @since 0.0.1
+ */
 public class GeneratorUtils {
 
 	public String generateModelAndViewAddObject(String mvVariable, String attributeName, String attributeValue) {
