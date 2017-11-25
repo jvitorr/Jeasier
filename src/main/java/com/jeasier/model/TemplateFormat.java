@@ -23,5 +23,7 @@ public interface TemplateFormat {
 	public String getListPage();
 
 	public String getCreateFilterField();
+	
+	
 
 }

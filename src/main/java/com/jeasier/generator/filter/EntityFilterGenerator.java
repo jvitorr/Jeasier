@@ -43,6 +43,8 @@ public class EntityFilterGenerator {
 
 		String pathToSave = EasyJavaUtil.getPathFile(gClass)
 				+ EasyJavaUtil.getPathFromPackage(prop.getProp().getProperty("packageFilter"));
+		
+		
 		String fileName = prop.getProp().getProperty("filter") + ".java";
 
 		System.out.println("Path " + pathToSave);

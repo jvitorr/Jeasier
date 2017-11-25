@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
- layout:decorator="'layout/MainlyLayout'">
+ layout:decorator="'${decorator}'">
 
 <head>
 	<title>Blank page</title>
@@ -27,10 +27,6 @@
 
 							<div th:fragment="mensagemGeral" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
 								<span th:text="${mensagem}"></span>
-							</div>
-
-							<div th:fragment="mensagemGeral" class="alert alert-success" th:if="${!#strings.isEmpty(message)}">
-								<span th:text="${message}"></span>
 							</div>
 
 							<div th:fragment="mensagemErro" class="alert alert-danger" th:if="${!#strings.isEmpty(messageErro)}">
@@ -102,7 +98,8 @@
 									<ul class="center pagination" th:if="${not pagina.vazia}" th:with="paginaAtual=${pagina.atual}">
 										<li th:if="${not pagina.primeira}" th:class="${pagina.primeira} ? disabled">
 											<a th:href="${pagina.urlParaPagina(paginaAtual - 1)}" th:remove="${pagina.primeira} ? tag">
-												<i><</i>
+												<i>
+													<</i>
 											</a>
 										</li>
 

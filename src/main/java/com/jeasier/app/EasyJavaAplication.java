@@ -36,10 +36,12 @@ public class EasyJavaAplication {
 		properties = new EasyJavaProperties();
 	}
 
-	public void generateCrud(Class<?> gClass) throws URISyntaxException, IOException {
+	// template exist
+
+	public void generateCrud(Class<?> gClass, String layoutDecorator) throws URISyntaxException, IOException {
 
 		validations(gClass);
-
+		properties.getProp().setProperty("layoutDecorator", layoutDecorator);
 		properties.getProp().setProperty("entity", gClass.getSimpleName());
 
 		filter = new EntityFilterGenerator(properties);
@@ -49,8 +51,8 @@ public class EasyJavaAplication {
 		service = new EntityServiceGenerator(properties);
 		controller = new EntityControllerGenerator(properties);
 		pageWrapper = new EntityPageWrapperGenerator(properties);
-		thymeleafCreator = new ThymeleafCreatorGenerator(properties);
-		thymeleafList = new ThymeleafListGenerator(properties);
+		thymeleafCreator = new ThymeleafCreatorGenerator(properties, null);
+		thymeleafList = new ThymeleafListGenerator(properties, null);
 
 		filter.generateClass(gClass);
 		repository.generateClass(gClass);
@@ -64,7 +66,7 @@ public class EasyJavaAplication {
 
 	}
 
-	public void generateCrud(String gPackage) throws IOException, URISyntaxException {
+	public void generateCrud(String gPackage, String layoutDecorator) throws IOException, URISyntaxException {
 		final ClassLoader loader = Thread.currentThread().getContextClassLoader();
 
 		for (final ClassPath.ClassInfo info : ClassPath.from(loader).getTopLevelClasses()) {
@@ -74,7 +76,7 @@ public class EasyJavaAplication {
 				System.out.println(gClass);
 				try {
 					validations(gClass);
-					generateCrud(gClass);
+					generateCrud(gClass, layoutDecorator);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
@@ -83,6 +85,8 @@ public class EasyJavaAplication {
 		}
 
 	}
+
+	// template does not exist
 
 	public void generateCrud(String gPackage, TemplateFormat template) throws IOException, URISyntaxException {
 		final ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -101,7 +105,7 @@ public class EasyJavaAplication {
 				System.out.println(gClass);
 				try {
 
-					generateCrud(gClass);
+					generateCrud(gClass, template);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
@@ -114,7 +118,35 @@ public class EasyJavaAplication {
 
 	}
 
-	public void validations(Class<?> gClass) throws URISyntaxException {
+	public void generateCrud(Class<?> gClass, TemplateFormat template) throws URISyntaxException, IOException {
+
+		validations(gClass);
+		properties.getProp().setProperty("layoutDecorator", "layout/MainlyLayout");
+		properties.getProp().setProperty("entity", gClass.getSimpleName());
+
+		filter = new EntityFilterGenerator(properties);
+		repository = new EntityRepositoryGenerator(properties);
+		helper = new EntityHelperGenerator(properties);
+		impl = new EntityImplGenerator(properties);
+		service = new EntityServiceGenerator(properties);
+		controller = new EntityControllerGenerator(properties);
+		pageWrapper = new EntityPageWrapperGenerator(properties);
+		thymeleafCreator = new ThymeleafCreatorGenerator(properties, template);
+		thymeleafList = new ThymeleafListGenerator(properties, template);
+
+		filter.generateClass(gClass);
+		repository.generateClass(gClass);
+		helper.generateClass(gClass);
+		impl.generateClass(gClass);
+		service.generateClass(gClass);
+		controller.generateClass(gClass);
+		pageWrapper.generateClass(gClass);
+		thymeleafCreator.generateClass(gClass);
+		thymeleafList.generateClass(gClass);
+
+	}
+
+	private void validations(Class<?> gClass) throws URISyntaxException {
 
 		if (FieldUtil.getPrimaryKey(gClass) == null) {
 			throw new IllegalArgumentException(gClass.getName() + " does not have primary key");
@@ -124,8 +156,8 @@ public class EasyJavaAplication {
 
 	}
 
-	public void autoConfiguration(Class<?> gClass) throws URISyntaxException {
-		if (Boolean.parseBoolean(properties.getProp().getProperty("autoScan"))) {
+	private void autoConfiguration(Class<?> gClass) throws URISyntaxException {
+		if (Boolean.parseBoolean(properties.getProp().getProperty("autoConfiguration"))) {
 			properties.getProp().setProperty("resourcePath", EasyJavaUtil.getPathResources(gClass));
 			properties.getProp().setProperty("staticPath", EasyJavaUtil.getPathResources(gClass) + "static");
 			properties.getProp().setProperty("templatePath", EasyJavaUtil.getPathResources(gClass) + "templates");

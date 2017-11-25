@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 
 import com.jeasier.app.EasyJavaAplication;
+import com.jeasier.model.TemplateFormat;
 import com.jeasier.util.EasyJavaProperties;
 import com.jeasier.util.EasyJavaUtil;
 import com.jeasier.util.FieldUtil;
@@ -15,8 +16,12 @@ public class ThymeleafListGenerator {
 
 	private EasyJavaProperties prop;
 
-	public ThymeleafListGenerator(EasyJavaProperties properties) {
+	private TemplateFormat templateFormat;
+
+	public ThymeleafListGenerator(EasyJavaProperties properties, TemplateFormat templateFormat) {
 		this.prop = properties;
+		this.templateFormat = templateFormat;
+
 	}
 
 	private StringBuilder columns;
@@ -35,9 +40,16 @@ public class ThymeleafListGenerator {
 	public String generateContent(Class<?> gClass) throws URISyntaxException {
 		prop.getProp().setProperty("entity", gClass.getSimpleName());
 		loadColumnsAndRow(gClass.getDeclaredFields());
-		StringBuilder template = new StringBuilder(
-				IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE).getFile()));
+		StringBuilder template;
+		if (this.templateFormat == null) {
+			template = new StringBuilder(IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE).getFile()));
+		} else {
+			template = new StringBuilder(IOUtil
+					.lerArquivo(EasyJavaAplication.class.getResource(this.templateFormat.getListPage()).getFile()));
 
+		}
+		FieldUtil.replaceAll(template, "${decorator}",
+				FieldUtil.getFieldFromClass(prop.getProp().getProperty("layoutDecorator")));
 		FieldUtil.replaceAll(template, "${filterField}",
 				FieldUtil.getFieldFromClass(prop.getProp().getProperty("filter")));
 		FieldUtil.replaceAll(template, "${entityField}",
@@ -113,28 +125,57 @@ public class ThymeleafListGenerator {
 
 		if (FieldUtil.fieldIsEnumeration(field)) {
 
-			template = new StringBuilder(IOUtil
-					.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD_ENUMERATION).getFile()));
+			if (this.templateFormat == null) {
+				template = new StringBuilder(IOUtil
+						.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD_ENUMERATION).getFile()));
+			} else {
+				template = new StringBuilder(IOUtil.lerArquivo(
+						EasyJavaAplication.class.getResource(this.templateFormat.getCreateFieldEnum()).getFile()));
+
+			}
+
 			FieldUtil.replaceAll(template, "${entityField}", FieldUtil.getFieldName(field));
 			FieldUtil.replaceAll(template, "${upperEntityField}", FieldUtil.getFieldNameUpperFirst(field));
 
 		} else if (FieldUtil.fieldIsRecognizedJavaClass(field)) {
 
-			template = new StringBuilder(
-					IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD).getFile()));
+			if (this.templateFormat == null) {
+				template = new StringBuilder(
+						IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD).getFile()));
+			} else {
+				template = new StringBuilder(IOUtil.lerArquivo(
+						EasyJavaAplication.class.getResource(this.templateFormat.getCreateField()).getFile()));
+
+			}
+
 			FieldUtil.replaceAll(template, "${entityField}", FieldUtil.getFieldName(field));
 			FieldUtil.replaceAll(template, "${upperEntityField}", FieldUtil.getFieldNameUpperFirst(field));
 			template.append("\n");
 
 		} else if (FieldUtil.getClass(field).equals("boolean") || FieldUtil.getClass(field).equals("Boolean")) {
-			template = new StringBuilder(
-					IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD_BOOLEAN).getFile()));
+
+			if (this.templateFormat == null) {
+				template = new StringBuilder(IOUtil
+						.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD_BOOLEAN).getFile()));
+			} else {
+				template = new StringBuilder(IOUtil.lerArquivo(
+						EasyJavaAplication.class.getResource(this.templateFormat.getCreateFieldBoolean()).getFile()));
+
+			}
+
 			FieldUtil.replaceAll(template, "${entityField}", FieldUtil.getFieldName(field));
 			FieldUtil.replaceAll(template, "${upperEntityField}", FieldUtil.getFieldNameUpperFirst(field));
 			template.append("\n");
 		} else if (FieldUtil.fieldHasRecognizedRelationship(field)) {
-			template = new StringBuilder(
-					IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD_CLASS).getFile()));
+
+			if (this.templateFormat == null) {
+				template = new StringBuilder(
+						IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD_CLASS).getFile()));
+			} else {
+				template = new StringBuilder(IOUtil.lerArquivo(
+						EasyJavaAplication.class.getResource(this.templateFormat.getCreateFieldClass()).getFile()));
+
+			}
 
 			FieldUtil.replaceAll(template, "${entityField}", FieldUtil.getFieldName(field));
 			FieldUtil.replaceAll(template, "${upperEntityField}", FieldUtil.getFieldNameUpperFirst(field));

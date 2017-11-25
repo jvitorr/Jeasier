@@ -26,37 +26,50 @@ public class Gentelella implements TemplateFormat {
 
 	public String getCreatePage() {
 		// TODO Auto-generated method stub
-		return "/templates/layouts/adminlte/thymeleaf/ThymeleafCreate.txt";
+		return "/templates/layouts/gentelella/thymeleaf/ThymeleafCreate.txt";
 	}
 
 	public String getListPage() {
 		// TODO Auto-generated method stub
-		return "/templates/layouts/adminlte/thymeleaf/ThymeleafList.txt";
+		return "/templates/layouts/gentelella/thymeleaf/ThymeleafList.txt";
 	}
 
 	public String getCreateField() {
 		// TODO Auto-generated method stub
-		return "/templates/layouts/adminlte/thymeleaf/ThymeleafCreateField.txt";
+		return "/templates/layouts/gentelella/thymeleaf/ThymeleafCreateField.txt";
 	}
 
 	public String getCreateFieldBoolean() {
 		// TODO Auto-generated method stub
-		return "/templates/layouts/adminlte/thymeleaf/ThymeleafCreateFieldBoolean.txt";
+		return "/templates/layouts/gentelella/thymeleaf/ThymeleafCreateFieldBoolean.txt";
 	}
 
 	public String getCreateFieldClass() {
 		// TODO Auto-generated method stub
-		return "/templates/layouts/adminlte/thymeleaf/ThymeleafCreateFieldClass.txt";
+		return "/templates/layouts/gentelella/thymeleaf/ThymeleafCreateFieldClass.txt";
 	}
 
 	public String getCreateFieldEnum() {
 		// TODO Auto-generated method stub
-		return "/templates/layouts/adminlte/thymeleaf/ThymeleafCreateFieldEnum.txt";
+		return "/templates/layouts/gentelella/thymeleaf/ThymeleafCreateFieldEnum.txt";
 	}
 
 	public String getCreateFilterField() {
 		// TODO Auto-generated method stub
-		return "/templates/layouts/adminlte/thymeleaf/ThymeleafFilterField.txt";
+		return "/templates/layouts/gentelella/thymeleaf/ThymeleafFilterField.txt";
 	}
+
+	@Override
+	public String toString() {
+		return "Gentelella [getPathVendors()=" + getPathVendors() + ", getPathResourcesLayout()="
+				+ getPathResourcesLayout() + ", getPathLayoutFragments()=" + getPathLayoutFragments()
+				+ ", getPathMainlyLayout()=" + getPathMainlyLayout() + ", getCreatePage()=" + getCreatePage()
+				+ ", getListPage()=" + getListPage() + ", getCreateField()=" + getCreateField()
+				+ ", getCreateFieldBoolean()=" + getCreateFieldBoolean() + ", getCreateFieldClass()="
+				+ getCreateFieldClass() + ", getCreateFieldEnum()=" + getCreateFieldEnum() + ", getCreateFilterField()="
+				+ getCreateFilterField() + "]";
+	}
+	
+	
 
 }

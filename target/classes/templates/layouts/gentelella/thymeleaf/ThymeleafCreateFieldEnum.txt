@@ -1,11 +1,11 @@
 <div class="form-group" th:classappend="${#fields.hasErrors('${entityField}')} ? has-error">
-							<label for="${entityField}" class="col-sm-2 col-xs-12  control-label">${upperEntityField}
-							</label>
-							<div class="col-sm-4 col-xs-12 ">
-							<select class="form-control"  th:field="*{${entityField}}">
-							<option value="">Select</option>
-							<option th:each="enum : ${${entityField}List}" th:value="${enum}" th:text="${enum}"></option>
-                    	</select>
-								
-							</div>
-						</div>
+	<label for="${entityField}" class="col-sm-2 col-xs-12  control-label">${upperEntityField}
+	</label>
+	<div class="col-sm-4 col-xs-12 ">
+		<select class="form-control" th:field="*{${entityField}}">
+			<option value="">Select</option>
+			<option th:each="enum : ${${entityField}List}" th:value="${enum}" th:text="${enum}"></option>
+		</select>
+
+	</div>
+</div>

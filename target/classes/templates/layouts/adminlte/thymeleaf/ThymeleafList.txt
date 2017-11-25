@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
- layout:decorator="'layout/MainlyLayout'">
+ layout:decorator="'${decorator}'">
 
 <head>
 	<title>Blank page</title>
@@ -11,14 +11,22 @@
 
 	<section layout:fragment="content">
 		<div class="container-fluid">
-			<div style="margin-top: 60px;">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<div class="clearfix">
-							<h2 style="float: left;">${listMessage}</h2>
-							<a style="float: right;" class="btn btn-link aw-link-panel" href="/${entityField}/${new}">${createMessage}</a>
-						</div>
+
+
+
+
+			<div class="box box-primary">
+				<div class="box-header with-border">
+
+					<div class="clearfix">
+						<h2 class="box-title" style="float: left;">${listMessage}</h2>
+						<a style="float: right;" class="btn btn-link aw-link-panel" href="/${entityField}/${new}">${createMessage}</a>
 					</div>
+				</div>
+
+
+				<div class="box-body">
+
 					<div class="panel-body">
 						<form class="form-horizontal" method="GET" action="/${entityField}/${list}" th:object="${${filterField}}">
 
@@ -29,9 +37,7 @@
 								<span th:text="${mensagem}"></span>
 							</div>
 
-							<div th:fragment="mensagemGeral" class="alert alert-success" th:if="${!#strings.isEmpty(message)}">
-								<span th:text="${message}"></span>
-							</div>
+
 
 							<div th:fragment="mensagemErro" class="alert alert-danger" th:if="${!#strings.isEmpty(messageErro)}">
 								<span th:text="${messageErro}"></span>
@@ -102,7 +108,8 @@
 									<ul class="center pagination" th:if="${not pagina.vazia}" th:with="paginaAtual=${pagina.atual}">
 										<li th:if="${not pagina.primeira}" th:class="${pagina.primeira} ? disabled">
 											<a th:href="${pagina.urlParaPagina(paginaAtual - 1)}" th:remove="${pagina.primeira} ? tag">
-												<i><</i>
+												<i>
+													<</i>
 											</a>
 										</li>
 
@@ -138,14 +145,21 @@
 
 
 
+
 				</div>
 
 
 
 
 
+
+
+
+
+
+
+
 			</div>
-		</div>
 
 	</section>
 	<th:block layout:fragment="javascript-extra">

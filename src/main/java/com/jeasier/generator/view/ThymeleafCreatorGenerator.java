@@ -16,8 +16,11 @@ public class ThymeleafCreatorGenerator {
 
 	private EasyJavaProperties prop;
 
-	public ThymeleafCreatorGenerator(EasyJavaProperties properties) {
+	private TemplateFormat templateFormat;
+
+	public ThymeleafCreatorGenerator(EasyJavaProperties properties, TemplateFormat templateFormat) {
 		this.prop = properties;
+		this.templateFormat = templateFormat;
 	}
 
 	// defaults
@@ -34,9 +37,27 @@ public class ThymeleafCreatorGenerator {
 	public String generateContent(Class<?> gClass) throws URISyntaxException {
 		prop.getProp().setProperty("entity", gClass.getSimpleName());
 
-		StringBuilder template = new StringBuilder(
-				IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE).getFile()));
+		StringBuilder template;
 
+		if (this.templateFormat == null) {
+			System.out.println("=========");
+			System.out.println(TEMPLATE);
+			System.out.println("=========");
+			template = new StringBuilder(IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE).getFile()));
+		} else {
+			
+			System.out.println("=========");
+			System.out.println(this.templateFormat.getCreatePage());
+			System.out.println("=========");
+			
+			
+			template = new StringBuilder(IOUtil
+					.lerArquivo(EasyJavaAplication.class.getResource(this.templateFormat.getCreatePage()).getFile()));
+
+		}
+		
+		FieldUtil.replaceAll(template, "${decorator}",
+				FieldUtil.getFieldFromClass(prop.getProp().getProperty("layoutDecorator")));
 		FieldUtil.replaceAll(template, "${entityField}",
 				FieldUtil.getFieldFromClass(prop.getProp().getProperty("entity")));
 
@@ -71,8 +92,7 @@ public class ThymeleafCreatorGenerator {
 		return template.toString();
 	}
 
-	public void generateClass(Class<?> gClass)
-			throws FileNotFoundException, URISyntaxException {
+	public void generateClass(Class<?> gClass) throws FileNotFoundException, URISyntaxException {
 
 		String pathToSave = EasyJavaUtil.getPathResources(gClass) + "templates" + OSValidator.getOsSeparator()
 				+ FieldUtil.getFieldFromClass(prop.getProp().getProperty("entity")) + OSValidator.getOsSeparator();
