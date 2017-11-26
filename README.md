@@ -80,5 +80,5 @@ app.generateCrud("seu pacote",new Gentelella());
 <ul>
 <li>Todos tipos primitivos</li>
 <li>Todas classes wrapper de tipos primtivos</li>
-<li>Date<li>
+<li>Date</li>
 </ul>
