@@ -82,3 +82,7 @@ app.generateCrud("seu pacote",new Gentelella());
 <li>Todas classes wrapper de tipos primtivos</li>
 <li>Date</li>
 </ul>
+
+<h2>6.Meu contato</h2>
+<h5>https://www.linkedin.com/in/jo%C3%A3o-v%C3%ADtor-feitosa-232b47125/</h5>
+<h5>joaoftnunes1@gmail.com/</h5>
