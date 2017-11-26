@@ -8,7 +8,7 @@
 
 
 <h2>2.Configuração<h2/>
-<h5>Para iniciar basta instalar o jar no classpath da aplicação.
+<h5>Para iniciar basta instalar o projeto no classpath da aplicação.
 O default da biblioteca é a propriedade ‘autoConfiguration = true’, significa que a aplicação irá criar todos os pacotes no nível anterior ao seu modelo para classes, </h5>
 <h5>Exemplo : </h5>
 <h5> com.jeasier.model >> a aplicação irá criar os demais pacotes a partir de com.jeasier</h5>
@@ -74,4 +74,11 @@ app.generateCrud("seu pacote",new Gentelella());
 <ul>
 <li>/entidadeLowerCase/new - criação</li>
 <li>/entidadeLowerCase/list – listagem</li>
+</ul>
+
+<h2>5. Classes suportadas</h2>
+<ul>
+<li>Todos tipos primitivos</li>
+<li>Todas classes wrapper de tipos primtivos</li>
+<li>Date<li>
 </ul>
