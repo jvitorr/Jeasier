@@ -26,12 +26,12 @@ O default da biblioteca é a propriedade ‘autoConfiguration = true’, signifi
 <h3>3.1 Para projetos com layouts existentes</h3>
 <h4>3.1.1 Geração de crud a partir de uma classe</h4>
 <ul>
-<li>EasyJavaAplication app = new EasyJavaAplication();</li>
+<li>JeasyAplication app = new JeasyAplication();</li>
 <li>app.generateCrud(SuaClasse.class,"seu layout decorator");</li>
 </ul>
 <h4>3.1.2 Geração de crud a partir de uma pacote</h4>
 <ul>
-<li>EasyJavaAplication app = new EasyJavaAplication();
+<li>JeasyAplication app = new JeasyAplication();
 </li>
 <li>app.generateCrud("seu pacote","seu layout decorator");</li>
 </ul>
@@ -39,12 +39,12 @@ O default da biblioteca é a propriedade ‘autoConfiguration = true’, signifi
 <h3>3.2 Para projetos com novos : </h3>
 <h4>3.2.1 Geração de crud a partir de uma classe</h4>
 <ul>
-<li>EasyJavaAplication app = new EasyJavaAplication();</li>
+<li>JeasyAplication app = new JeasyAplication();</li>
 <li>app.generateCrud(SuaClasse.class,new Gentelella());</li>
 </ul>
 <h4>3.2.1 Geração de crud a partir de uma pacote :</h4>
 <ul>
-<li>EasyJavaAplication app = new EasyJavaAplication();</li>
+<li>JeasyAplication app = new JeasyAplication();</li>
 <li>app.generateCrud("seu pacote",new Gentelella());</li>
 </ul>
 
