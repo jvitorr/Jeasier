@@ -25,7 +25,7 @@ import com.jeasier.util.FieldUtil;
  * @since 0.0.1
  */
 
-public class JeasyAplication {
+public class JeasierAplication {
 
 	private EntityFilterGenerator filter;
 	private EntityRepositoryGenerator repository;
@@ -38,7 +38,7 @@ public class JeasyAplication {
 	private ThymeleafListGenerator thymeleafList;
 	private EasyJavaProperties properties;
 
-	public JeasyAplication() throws IOException {
+	public JeasierAplication() throws IOException {
 		properties = new EasyJavaProperties();
 	}
 
