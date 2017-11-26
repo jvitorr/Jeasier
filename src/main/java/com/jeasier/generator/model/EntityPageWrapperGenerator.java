@@ -3,7 +3,6 @@ package com.jeasier.generator.model;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 
-import com.jeasier.app.JeasyAplication;
 import com.jeasier.util.EasyJavaProperties;
 import com.jeasier.util.EasyJavaUtil;
 import com.jeasier.util.FieldUtil;
@@ -29,7 +28,7 @@ public class EntityPageWrapperGenerator {
 	public String generateContent(Class<?> gClass) throws URISyntaxException {
 		prop.getProp().setProperty("entity", gClass.getSimpleName());
 		StringBuilder template = new StringBuilder(
-				IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE).getFile()));
+				IOUtil.lerArquivo(Class.class.getResource(TEMPLATE).getFile()));
 
 		// PageWrapper
 		FieldUtil.replaceAll(template, "${packagePageWrapper}",

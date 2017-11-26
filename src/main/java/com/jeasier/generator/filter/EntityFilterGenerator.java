@@ -4,11 +4,9 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 
-import com.jeasier.app.JeasyAplication;
 import com.jeasier.util.EasyJavaProperties;
 import com.jeasier.util.EasyJavaUtil;
 import com.jeasier.util.FieldUtil;
-import com.jeasier.util.GeneratorUtils;
 import com.jeasier.util.IOUtil;
 
 public class EntityFilterGenerator {
@@ -22,8 +20,7 @@ public class EntityFilterGenerator {
 	public static final String TEMPLATE = "/templates/filter/Filter.txt";
 
 	public String generateContent(Class<?> gClass) throws URISyntaxException {
-		StringBuilder template = new StringBuilder(
-				IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE).getFile()));
+		StringBuilder template = new StringBuilder(IOUtil.lerArquivo(Class.class.getResource(TEMPLATE).getFile()));
 		// filter
 		FieldUtil.replaceAll(template, "${packageFilter}",
 				FieldUtil.getFieldFromClass(prop.getProp().getProperty("packageFilter")));
@@ -43,8 +40,7 @@ public class EntityFilterGenerator {
 
 		String pathToSave = EasyJavaUtil.getPathFile(gClass)
 				+ EasyJavaUtil.getPathFromPackage(prop.getProp().getProperty("packageFilter"));
-		
-		
+
 		String fileName = prop.getProp().getProperty("filter") + ".java";
 
 		System.out.println("Path " + pathToSave);
@@ -57,13 +53,18 @@ public class EntityFilterGenerator {
 		StringBuilder fieldsResult = new StringBuilder();
 		StringBuilder getterSetters = new StringBuilder();
 		for (Field field : gclass.getDeclaredFields()) {
-			fieldsResult.append(FieldUtil.generateField(field));
+			if (FieldUtil.isValidField(field)) {
+				fieldsResult.append(FieldUtil.generateField(field));
+			}
+
 		}
 		fieldsResult.append("\n\n");
 
 		for (Field field : gclass.getDeclaredFields()) {
-			getterSetters.append(FieldUtil.generateGetter(field));
-			getterSetters.append(FieldUtil.generateSetter(field));
+			if (FieldUtil.isValidField(field)) {
+				getterSetters.append(FieldUtil.generateGetter(field));
+				getterSetters.append(FieldUtil.generateSetter(field));
+			}
 		}
 
 		return fieldsResult.append(getterSetters.toString()).toString();

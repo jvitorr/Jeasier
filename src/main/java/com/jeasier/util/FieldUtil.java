@@ -132,6 +132,23 @@ public class FieldUtil {
 		return false;
 	}
 
+	public static boolean isValidField(Field field) {
+		for (java.lang.annotation.Annotation a : field.getAnnotations()) {
+
+			if (a.annotationType().getSimpleName().equals("OneToMany")) {
+				return false;
+
+			}
+		}
+		System.out.println("==========");
+		System.out.println(field.getName());
+		if (field.getName().equals("serialVersionUID")) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public static boolean fieldIsEnumeration(Field field) {
 		if (field.getType().isEnum()) {
 			return true;

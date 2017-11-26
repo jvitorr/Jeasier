@@ -6,7 +6,6 @@ import java.net.URISyntaxException;
 
 import org.apache.commons.io.FileUtils;
 
-import com.jeasier.app.JeasyAplication;
 import com.jeasier.model.TemplateFormat;
 import com.jeasier.util.EasyJavaProperties;
 import com.jeasier.util.IOUtil;
@@ -29,10 +28,10 @@ public class GeneratorLayout {
 
 	public void generate(TemplateFormat template) throws URISyntaxException, IOException {
 
-		System.out.println(JeasyAplication.class.getResource(template.getPathVendors()).getFile());
-		System.out.println(JeasyAplication.class.getResource(template.getPathLayoutFragments()).getFile());
+		System.out.println(Class.class.getResource(template.getPathVendors()).getFile());
+		System.out.println(Class.class.getResource(template.getPathLayoutFragments()).getFile());
 		// System.out.println(EasyJavaAplication.class.getResource(template.getPathMainlyLayout()).getFile());
-		System.out.println(JeasyAplication.class.getResource(template.getPathResourcesLayout()).getFile());
+		System.out.println(Class.class.getResource(template.getPathResourcesLayout()).getFile());
 
 		String pathResourcesVendors = prop.getProp().getProperty("staticPath") + OSValidator.getOsSeparator()
 				+ "vendors";
@@ -45,17 +44,17 @@ public class GeneratorLayout {
 		IOUtil.criarPastasCasoNaoExista(pathTemplates);
 
 		FileUtils.copyDirectory(
-				new File(JeasyAplication.class.getResource(template.getPathLayoutFragments()).getFile()),
+				new File(Class.class.getResource(template.getPathLayoutFragments()).getFile()),
 				new File(pathTemplates));
 
 		// IOUtil.gravarArquivo(
 		// IOUtil.lerArquivo(EasyJavaAplication.class.getResource(template.getPathMainlyLayout()).getFile()),
 		// pathTemplates, template.getPathMainlyLayout());
 
-		FileUtils.copyDirectory(new File(JeasyAplication.class.getResource(template.getPathVendors()).getFile()),
+		FileUtils.copyDirectory(new File(Class.class.getResource(template.getPathVendors()).getFile()),
 				new File(pathResourcesVendors));
 		FileUtils.copyDirectory(
-				new File(JeasyAplication.class.getResource(template.getPathResourcesLayout()).getFile()),
+				new File(Class.class.getResource(template.getPathResourcesLayout()).getFile()),
 				new File(pathResourcesLayout));
 	}
 

@@ -4,12 +4,10 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 
-import com.jeasier.app.JeasyAplication;
 import com.jeasier.util.EasyJavaProperties;
 import com.jeasier.util.EasyJavaUtil;
 import com.jeasier.util.FieldUtil;
 import com.jeasier.util.IOUtil;
-
 
 /**
  * 
@@ -36,8 +34,7 @@ public class EntityImplGenerator {
 	public String generateContent(Class<?> gClass) throws URISyntaxException {
 		prop.getProp().setProperty("entity", gClass.getSimpleName());
 
-		StringBuilder template = new StringBuilder(
-				IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE).getFile()));
+		StringBuilder template = new StringBuilder(IOUtil.lerArquivo(Class.class.getResource(TEMPLATE).getFile()));
 
 		// impl
 		FieldUtil.replaceAll(template, "${packageImpl}",
@@ -81,7 +78,11 @@ public class EntityImplGenerator {
 		StringBuilder sb = new StringBuilder();
 
 		for (Field field : fields) {
-			sb.append(generateFilter(field));
+
+			if (FieldUtil.isValidField(field)) {
+
+				sb.append(generateFilter(field));
+			}
 		}
 
 		return sb.toString();
@@ -92,8 +93,7 @@ public class EntityImplGenerator {
 		StringBuilder template;
 
 		if (FieldUtil.getClass(field).equals("String")) {
-			template = new StringBuilder(
-					IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE_FILTER_STRING).getFile()));
+			template = new StringBuilder(IOUtil.lerArquivo(Class.class.getResource(TEMPLATE_FILTER_STRING).getFile()));
 
 			FieldUtil.replaceAll(template, "${upperAtribute}", FieldUtil.getFieldNameUpperFirst(field));
 			FieldUtil.replaceAll(template, "${atribute}", FieldUtil.getFieldName(field));
@@ -103,8 +103,7 @@ public class EntityImplGenerator {
 			template.append("\n");
 
 		} else if (FieldUtil.getClass(field).equals("boolean")) {
-			template = new StringBuilder(
-					IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE_FILTER_BOOLEAN).getFile()));
+			template = new StringBuilder(IOUtil.lerArquivo(Class.class.getResource(TEMPLATE_FILTER_BOOLEAN).getFile()));
 			FieldUtil.replaceAll(template, "${upperAtribute}", FieldUtil.getFieldNameUpperFirst(field));
 			FieldUtil.replaceAll(template, "${atribute}", FieldUtil.getFieldName(field));
 			FieldUtil.replaceAll(template, "${filterField}",
@@ -112,7 +111,7 @@ public class EntityImplGenerator {
 			template.append("\n");
 		} else {
 			template = new StringBuilder(
-					IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE_FILTER_ANY_CLASS).getFile()));
+					IOUtil.lerArquivo(Class.class.getResource(TEMPLATE_FILTER_ANY_CLASS).getFile()));
 			FieldUtil.replaceAll(template, "${upperAtribute}", FieldUtil.getFieldNameUpperFirst(field));
 			FieldUtil.replaceAll(template, "${atribute}", FieldUtil.getFieldName(field));
 			FieldUtil.replaceAll(template, "${filterField}",

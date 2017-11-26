@@ -3,7 +3,6 @@ package com.jeasier.generator.service;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 
-import com.jeasier.app.JeasyAplication;
 import com.jeasier.util.EasyJavaProperties;
 import com.jeasier.util.EasyJavaUtil;
 import com.jeasier.util.FieldUtil;
@@ -28,7 +27,7 @@ public class EntityServiceGenerator {
 	public String generateContent(Class<?> gClass) throws URISyntaxException {
 		prop.getProp().setProperty("entity", gClass.getSimpleName());
 		StringBuilder template = new StringBuilder(
-				IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE).getFile()));
+				IOUtil.lerArquivo(Class.class.getResource(TEMPLATE).getFile()));
 		// Service
 		FieldUtil.replaceAll(template, "${packageService}",
 				FieldUtil.getFieldFromClass(prop.getProp().getProperty("packageService")));

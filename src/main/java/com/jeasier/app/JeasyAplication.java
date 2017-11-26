@@ -1,7 +1,6 @@
 package com.jeasier.app;
 
 import java.io.IOException;
-
 import java.net.URISyntaxException;
 
 import com.google.common.reflect.ClassPath;
@@ -159,6 +158,7 @@ public class JeasyAplication {
 			throw new IllegalArgumentException(gClass.getName() + " does not have primary key");
 
 		}
+
 		autoConfiguration(gClass);
 
 	}
