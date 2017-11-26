@@ -3,7 +3,7 @@ package com.jeasier.generator.repository;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 
-import com.jeasier.app.EasyJavaAplication;
+import com.jeasier.app.JeasyAplication;
 import com.jeasier.util.EasyJavaProperties;
 import com.jeasier.util.EasyJavaUtil;
 import com.jeasier.util.FieldUtil;
@@ -27,7 +27,7 @@ public class EntityRepositoryGenerator {
 
 	public String generateContent(Class<?> gClass) throws URISyntaxException {
 		StringBuilder template = new StringBuilder(
-				IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE).getFile()));
+				IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE).getFile()));
 		// repository
 		FieldUtil.replaceAll(template, "${packageRepository}",
 				FieldUtil.getFieldFromClass(prop.getProp().getProperty("packageRepository")));

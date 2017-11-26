@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 
-import com.jeasier.app.EasyJavaAplication;
+import com.jeasier.app.JeasyAplication;
 import com.jeasier.model.TemplateFormat;
 import com.jeasier.util.EasyJavaProperties;
 import com.jeasier.util.EasyJavaUtil;
@@ -48,10 +48,10 @@ public class ThymeleafListGenerator {
 		loadColumnsAndRow(gClass.getDeclaredFields());
 		StringBuilder template;
 		if (this.templateFormat == null) {
-			template = new StringBuilder(IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE).getFile()));
+			template = new StringBuilder(IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE).getFile()));
 		} else {
 			template = new StringBuilder(IOUtil
-					.lerArquivo(EasyJavaAplication.class.getResource(this.templateFormat.getListPage()).getFile()));
+					.lerArquivo(JeasyAplication.class.getResource(this.templateFormat.getListPage()).getFile()));
 
 		}
 		FieldUtil.replaceAll(template, "${decorator}",
@@ -133,10 +133,10 @@ public class ThymeleafListGenerator {
 
 			if (this.templateFormat == null) {
 				template = new StringBuilder(IOUtil
-						.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD_ENUMERATION).getFile()));
+						.lerArquivo(JeasyAplication.class.getResource(TEMPLATE_CREATE_FIELD_ENUMERATION).getFile()));
 			} else {
 				template = new StringBuilder(IOUtil.lerArquivo(
-						EasyJavaAplication.class.getResource(this.templateFormat.getCreateFieldEnum()).getFile()));
+						JeasyAplication.class.getResource(this.templateFormat.getCreateFieldEnum()).getFile()));
 
 			}
 
@@ -147,10 +147,10 @@ public class ThymeleafListGenerator {
 
 			if (this.templateFormat == null) {
 				template = new StringBuilder(
-						IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD).getFile()));
+						IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE_CREATE_FIELD).getFile()));
 			} else {
 				template = new StringBuilder(IOUtil.lerArquivo(
-						EasyJavaAplication.class.getResource(this.templateFormat.getCreateField()).getFile()));
+						JeasyAplication.class.getResource(this.templateFormat.getCreateField()).getFile()));
 
 			}
 
@@ -162,10 +162,10 @@ public class ThymeleafListGenerator {
 
 			if (this.templateFormat == null) {
 				template = new StringBuilder(IOUtil
-						.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD_BOOLEAN).getFile()));
+						.lerArquivo(JeasyAplication.class.getResource(TEMPLATE_CREATE_FIELD_BOOLEAN).getFile()));
 			} else {
 				template = new StringBuilder(IOUtil.lerArquivo(
-						EasyJavaAplication.class.getResource(this.templateFormat.getCreateFieldBoolean()).getFile()));
+						JeasyAplication.class.getResource(this.templateFormat.getCreateFieldBoolean()).getFile()));
 
 			}
 
@@ -176,10 +176,10 @@ public class ThymeleafListGenerator {
 
 			if (this.templateFormat == null) {
 				template = new StringBuilder(
-						IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE_CREATE_FIELD_CLASS).getFile()));
+						IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE_CREATE_FIELD_CLASS).getFile()));
 			} else {
 				template = new StringBuilder(IOUtil.lerArquivo(
-						EasyJavaAplication.class.getResource(this.templateFormat.getCreateFieldClass()).getFile()));
+						JeasyAplication.class.getResource(this.templateFormat.getCreateFieldClass()).getFile()));
 
 			}
 

@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.net.URISyntaxException;
 
-import com.jeasier.app.EasyJavaAplication;
+import com.jeasier.app.JeasyAplication;
 import com.jeasier.util.EasyJavaProperties;
 import com.jeasier.util.EasyJavaUtil;
 import com.jeasier.util.FieldUtil;
@@ -23,7 +23,7 @@ public class EntityFilterGenerator {
 
 	public String generateContent(Class<?> gClass) throws URISyntaxException {
 		StringBuilder template = new StringBuilder(
-				IOUtil.lerArquivo(EasyJavaAplication.class.getResource(TEMPLATE).getFile()));
+				IOUtil.lerArquivo(JeasyAplication.class.getResource(TEMPLATE).getFile()));
 		// filter
 		FieldUtil.replaceAll(template, "${packageFilter}",
 				FieldUtil.getFieldFromClass(prop.getProp().getProperty("packageFilter")));
