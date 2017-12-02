@@ -1,5 +1,5 @@
 # Jeasier - Java complete crud generator
-#### Com suporte relacionamentos e enumarations
+#### With support for relationships and enumerations
 <img width="70%" alt="admin" src="https://user-images.githubusercontent.com/18018030/33237321-f3ec994e-d24e-11e7-8358-13281c5916ef.png">
 <img width="70%" alt="gentelella" src="https://user-images.githubusercontent.com/18018030/33237322-f5560d6a-d24e-11e7-8633-168f8bc57cff.png">
 
