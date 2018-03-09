@@ -1,2 +1,5 @@
 src/main/resources/templates/* linguist-vendored
+target/* linguist-vendored
+
+
 
