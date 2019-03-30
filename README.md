@@ -43,7 +43,7 @@ app.generateCrud(YourClass.class,"your layout decorator");
   
    <pre lang="java">
  
-JeasyAplication app = new JeasyAplication();
+JeasierAplication app = new JeasierAplication();
 app.generateCrud("your package","your layout decorator");
 
   </pre>
@@ -54,7 +54,7 @@ app.generateCrud("your package","your layout decorator");
 
   <pre lang="java">
  
-JeasyAplication app = new JeasyAplication();
+JeasierAplication app = new JeasierAplication();
 app.generateCrud(YouClass.class,new Gentelella());
 
   </pre>
@@ -62,7 +62,7 @@ app.generateCrud(YouClass.class,new Gentelella());
 <h4>3.2.2 Generating crud from a package:</h4>
 <pre lang="java">
 
-JeasyAplication app = new JeasyAplication();
+JeasierAplication app = new JeasierAplication();
 app.generateCrud("your package",new Gentelella());
   </pre>
 
